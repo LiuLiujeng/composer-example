@@ -26,14 +26,15 @@ aws_secret = secret.Secret(
     secret='aws-secret',
     key='aws-access-secret')
 
-KubernetesPodOperator(
+operator = KubernetesPodOperator(
     task_id='print-secret',
     name='print-secret',
     namespace='default',
     cmds=[
-        'echo $AWS_ACCESS_KEY_ID" and "$AWS_SECRET_ACCESS_KEY',
+        'echo',
     ],
+    arguments=['{{ ds }}'],
     secrets=[aws_key, aws_secret],
-    image='bash',
+    image='ubuntu',
     image_pull_policy='Always',
     dag=dag)
