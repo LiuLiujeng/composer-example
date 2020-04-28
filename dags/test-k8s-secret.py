@@ -33,7 +33,7 @@ operator = KubernetesPodOperator(
     cmds=[
         'echo',
     ],
-    arguments=['$AWS_SECRET_ACCESS_KEY'],
+    arguments=['"$AWS_SECRET_ACCESS_KEY"'],
     secrets=[aws_key, aws_secret],
     image='ubuntu',
     image_pull_policy='Always',
